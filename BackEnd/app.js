@@ -16,12 +16,28 @@ const basicAuth = require('express-basic-auth');
 io.on('connection', function(socket){
 
   console.log("Accepting connection")
-      socket.on('chat', function(msg){
-          
-      io.emit('chat', msg);
-      console.log(msg)
+
+
+      socket.on('ready', function(msg){
+      
+      console.log("driver", msg.id , " is ready")
+
+      socket.join('driver')
   
       });
+
+      socket.on('find', function(msg){
+        
+        console.log("Finding Nemo" , msg)
+        socket.to('driver').emit('request', { msg })
+
+        });
+
+      // socket.on('request', function(msg){
+        
+      //   console.log(msg)
+
+      //   });
   
 });
 
@@ -58,11 +74,15 @@ require('./models/db')
 //Routes
 
 
-
+app.get('/request', function(req, res){
+  res.sendFile( __dirname + '/views/request.html' )
+});
 
 app.get('/', function(req, res){
-    res.send("Hello World");
+    res.sendFile( __dirname + '/views/driver.html' )
   });
+
+
 
 
 app.get('/login', (req , res)=>{
