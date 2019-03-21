@@ -14,6 +14,9 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { createStackNavigator, createAppContainer,  createDrawerNavigator, createSwitchNavigator ,createBottomTabNavigator } from "react-navigation";
 
 import Login from './components/Login';
+import LoginStudent from './components/LoginStudent';
+import LoginDriver from './components/LoginDriver';
+
 import SideBar from './components/SideBar';
 import ListTimeTable from './components/ListTimeTable';
 
@@ -33,6 +36,8 @@ const Mdn = createDrawerNavigator({
 
 const AppNavigator = createStackNavigator({
   login: { screen: Login }, 
+  studentLogin :{screen:LoginStudent},
+  driverLogin:{screen:LoginDriver},
    profile: Mdn,
   // navigateRoute:{screen:NavigateRouteInput},
   // navigateMaps:{screen:NavRouteMaps},

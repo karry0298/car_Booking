@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet,Image} from 'react-native';
 import {Container, Header, Tab, Tabs, Button, TabHeading, Icon} from 'native-base';
 import SignIn from './SignIn';
 import Register from './Register';
@@ -38,35 +38,83 @@ export default class Login extends Component {
     render() {
         console.disableYellowBox = true;
         return ( 
-            <Container>
-                <Header style={{height: 0}} hasTabs/>
-                <Tabs tabBarUnderlineStyle={{backgroundColor: '#00a4fe', opacity:0}} >
-                    <Tab activeTextStyle={{color: '#fff', fontWeight: 'bold'}}
-                         textStyle={{color: '#fff', fontSize: 12}}
-                         tabStyle={{backgroundColor: '#0083d9', height: 60}}
-                         activeTabStyle={{backgroundColor: '#00a4fe', height: 60}}
-                         heading="Sign in">
-                        <SignIn navigation={this.props.navigation}/>
-                    </Tab>
 
-                    <Tab activeTextStyle={{color: '#fff', fontWeight: 'bold'}}
-                         textStyle={{color: '#fff', fontSize: 12}}
-                         tabStyle={{backgroundColor: '#0083d9', height: 60}}
-                         activeTabStyle={{backgroundColor: '#00a4fe', height: 60}}
-                         heading="Register">
-                        <Register navigation={this.props.navigation}/>
-                    </Tab>
-                    
-                </Tabs>
-            </Container>
+            <View style={styles.container}>
+                <View style={styles.header}></View>
+                <Image style={styles.avatar} source={require('../../assets/images/tumtum.jpg')}/>
+                <View style={styles.body}>
+                    <View>
+                        <Button rounded info style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}
+                                onPress={() => this.props.navigation.navigate('studentLogin')}>
+                            <Text style={{color:'white'}} >Student Login</Text>
+                        </Button>
+
+                        <Button rounded info style={{textAlign:'center',alignSelf: 'center',justifyContent:'center' ,width:260 , marginTop: 20, backgroundColor:"#0083d9"  }}
+                            onPress={() => this.props.navigation.navigate('driverLogin')}>
+                            <Text style={{color:'white'}}>Driver Login</Text>
+                        </Button>
+                    </View>
+                </View>
+            </View>
+               
         );
     }
 }
 
 const styles = StyleSheet.create({
-    header: {},
-    tab: {
-        backgroundColor: '#3F51B5'
-    }
-
-})
+    header:{
+      backgroundColor: "#00BFFF",
+      height:220,
+    },
+    avatar: {
+      width: 170,
+      height: 170,
+      borderRadius: 85,
+      borderWidth: 4,
+      borderColor: "white",
+      marginBottom:10,
+      alignSelf:'center',
+      position: 'absolute',
+      marginTop:150
+    },
+    name:{
+      fontSize:22,
+      color:"#FFFFFF",
+      fontWeight:'600',
+    },
+    body:{
+      marginTop:140,
+    },
+    bodyContent: {
+      flex: 1,
+      alignItems: 'center',
+      padding:30,
+    },
+    name:{
+      fontSize:28,
+      color: "#696969",
+      fontWeight: "600"
+    },
+    info:{
+      fontSize:16,
+      color: "#00BFFF",
+      marginTop:10
+    },
+    description:{
+      fontSize:16,
+      color: "#696969",
+      marginTop:10,
+      textAlign: 'center'
+    },
+    buttonContainer: {
+      marginTop:10,
+      height:45,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom:20,
+      width:250,
+      borderRadius:30,
+      backgroundColor: "#00BFFF",
+    },
+  });
