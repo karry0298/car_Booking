@@ -7,7 +7,8 @@ var driverSchema = new Schema({
     carModel : String,
     carNumber : String,
     photoUrl : String,
-    licenseUrl : String
+    licenseUrl : String,
+    experienced : Boolean
 
 });
 
