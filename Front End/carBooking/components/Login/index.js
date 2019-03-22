@@ -46,12 +46,12 @@ export default class Login extends Component {
                     <View>
                         <Button rounded info style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}
                                 onPress={() => this.props.navigation.navigate('studentLogin')}>
-                            <Text style={{color:'white'}} >Student Login</Text>
+                            <Text style={{color:'white'}} >I'm a Student</Text>
                         </Button>
 
                         <Button rounded info style={{textAlign:'center',alignSelf: 'center',justifyContent:'center' ,width:260 , marginTop: 20, backgroundColor:"#0083d9"  }}
                             onPress={() => this.props.navigation.navigate('driverLogin')}>
-                            <Text style={{color:'white'}}>Driver Login</Text>
+                            <Text style={{color:'white'}}>I'm a Driver</Text>
                         </Button>
                     </View>
                 </View>

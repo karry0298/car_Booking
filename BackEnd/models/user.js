@@ -16,7 +16,11 @@ const UsersSchema = new Schema({
       default : true
   },
   profileId : String,
-  rides : [ { type : Schema.Types.ObjectId , ref : 'Ride'} ]
+  rides : [ { type : Schema.Types.ObjectId , ref : 'Ride'} ],
+  rating : {
+    type : Number,
+    default : 0.0
+  }
 
 });
 
