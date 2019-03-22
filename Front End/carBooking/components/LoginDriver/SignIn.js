@@ -53,7 +53,7 @@ export default class SignIn extends Component {
                     </View>
 
                         <Button rounded info style={{textAlign:'center',alignSelf: 'center',justifyContent:'center' ,width:260 , marginTop: 20, backgroundColor:"#0083d9"  }}
-                               onPress={() => this.handle()}>
+                               onPress={() => this.props.navigation.navigate('driverdummy')}>
                             <Text>Driver Login</Text>
                         </Button>
 
