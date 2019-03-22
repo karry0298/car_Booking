@@ -33,6 +33,14 @@ const Mdn = createDrawerNavigator({
 },
 )
 
+// const Mdn = createDrawerNavigator({
+//   listTimeTable:{screen:ListTimeTable},
+// },
+// {
+//   contentComponent: SideBar,
+// },
+// )
+
 //-----------------------Main App navigation ---------------------------------------
 
 
