@@ -11,7 +11,7 @@ module.exports.createRide = (req , res) =>{
 }
 
 
-module.exports.getDriverRides = (req , res) =>{
+module.exports.getRides = (req , res) =>{
 
     
 

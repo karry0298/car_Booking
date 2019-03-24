@@ -6,4 +6,8 @@ mongoose.connection.on('connected' , () =>{
 	console.log('connected')
 });
 
+require('./driver')
+require('./student')
 require('./user')
+require('./ride')
+
