@@ -22,7 +22,7 @@ export default class DriverDummy extends Component {  //rename ur calss same as 
       seats : 5
     };
 
-    this.socket.emit('ready', { id : this.state.id , driverId : this.socket.id })
+    
   }
 
   componentDidMount(){
@@ -48,6 +48,21 @@ export default class DriverDummy extends Component {  //rename ur calss same as 
       showAlert: false
     });
   };
+
+  goOnline = () =>{
+
+    
+    if ( this.state.onlineStatus ){
+      this.socket.emit('goOffline');
+    }else{
+      this.socket.emit('ready', { id : this.state.id , driverId : this.socket.id })
+    }
+
+    this.setState({ onlineStatus: !this.state.onlineStatus })
+    
+    
+
+  }
 
   acceptRequest = () =>{
 
@@ -81,7 +96,7 @@ export default class DriverDummy extends Component {  //rename ur calss same as 
         containerStyle={{ }}
         style={{ backgroundColor: '#5067FF' }}
         position="bottomRight" 
-         onPress={ () => this.setState({ onlineStatus: !this.state.onlineStatus })}
+         onPress={ this.goOnline }
         >
         <Icon type="FontAwesome" name="toggle-on"  />
       </Fab>

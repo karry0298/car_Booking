@@ -15,7 +15,7 @@ var rideSchema = new Schema({
     price : String,
     completed : {
         type : Boolean,
-        default : False
+        default : false
     }
     
 

@@ -2,14 +2,19 @@
 const Mongoose = require('mongoose');
 const User = Mongoose.model('User');
 const Driver = Mongoose.model('Driver');
-
+const crypto = require('crypto');
 
 module.exports.createUser  = (req , res) =>{
     let b = req.body;
+    let pswd = b.password;
+
+    let md5 = crypto.createHash('md5');
+    md5.update(pswd);
+    var hash = md5.digest('hex');
+
     let query = {
         username : b.username,
-        hash : b.hash || null,
-        salt : b.salt || null,
+        hash : hash,
         contactNo : b.contactNo,
         name : b.name || 'abby' ,
         isStudent : b.isStudent || true,
@@ -29,10 +34,37 @@ module.exports.createUser  = (req , res) =>{
 
 }
 
+module.exports.verifyUser  = (req , res) =>{
+    let b = req.body;
+    let username = b.username;
+    let pswd = b.password;
+
+    let md5 = crypto.createHash('md5');
+    md5.update(pswd);
+    var hash = md5.digest('hex');
+
+    User.findOne({username}, (err , doc)=>{
+
+        console.log(doc.hash, " -=- ", hash)
+        if(err){
+            res.send({err})
+        }else if ( doc.hash == hash ){
+            res.send({status : true , user : doc})
+        }else{
+            res.send({status : false})
+        }
+
+    })
+
+
+}
+
+
 module.exports.findUserbyUsername = (req , res) =>{
 
+    var username = req.query.username;
     let query = {
-
+        username
     }
 
     User.findOne(query , (err , data)=>{
