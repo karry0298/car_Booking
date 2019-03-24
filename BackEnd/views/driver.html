@@ -25,17 +25,35 @@
 <script>
       $(function () {
         var socket = io();
-
+        var driverId = null;
         $('form').submit(function(e){
           e.preventDefault(); // prevents page reloading
-          socket.emit('ready', { id : $('#id').val() });
+          driverId = $('#id').val();
+          socket.emit('ready', { id : driverId });
           return false;
         });
 
         socket.on('request', function(msg){
           
-          $('#demand').append($('<li>').text(msg.msg.id));
+          console.log("finding");
+
+          var newButton  = `
+          <div class="accept" id="${msg.riderId}">
+            ${msg.id} 
+            <button >
+              Accept
+            </button>
+          </div>
+          `
+          $('#demand').append( newButton );
         });
+
+        $('#demand').on( 'click' , '.accept' ,  function(e){
+          var id = this.id;
+          console.log(id)
+          socket.emit('sendAcception', { driverId , id  })
+          console.log("clicked" )
+        })
 
         
       });

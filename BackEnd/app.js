@@ -1,6 +1,7 @@
 var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var http = require('http').Server(app); //Server
+
+var io = require('socket.io')(http);  //Connection Establishing - Driver and 
 const path = require('path');
 const express = require('express')
 const bodyParser = require('body-parser');
@@ -29,15 +30,15 @@ io.on('connection', function(socket){
       socket.on('find', function(msg){
         
         console.log("Finding Nemo" , msg)
-        socket.to('driver').emit('request', { msg })
+        socket.to('driver').emit('request', { ...msg })
 
         });
 
-      // socket.on('request', function(msg){
+      socket.on('sendAcception', function(msg){
         
-      //   console.log(msg)
+        socket.to(msg.id).emit('accept', { driverId : msg.driverId })
 
-      //   });
+      });
   
 });
 
@@ -91,7 +92,9 @@ app.get('/login', (req , res)=>{
 
 })
 
-
+app.get('/test', (req , res)=>{
+  res.send({test : true})
+})
 
 
 http.listen(3000, function(){
