@@ -3,6 +3,11 @@ import { View, Text ,StyleSheet,Image} from 'react-native';
 import { Container, Header, Button, Icon, Fab } from 'native-base';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import SocketIOClient from 'socket.io-client';
+import axios from 'axios';
+import call from 'react-native-phone-call'
+
+import IPADDR from '../../assets/constant/IP';
+
 export default class DriverDummy extends Component {  //rename ur calss same as ur folder path
   static navigationOptions = {
     title: 'Driver Page',
@@ -10,16 +15,25 @@ export default class DriverDummy extends Component {  //rename ur calss same as 
 
   constructor(props) {
     super(props);
-    this.socket = SocketIOClient('http://192.168.1.108:3000');
-    
+    this.socket = SocketIOClient(`http://${IPADDR}:3000`);
+    var navi = this.props.navigation;
+    var user = navi.getParam('user', {
+      name : 'Abby Patil',
+      contactNo : 95624723541,
+      rating : 2
+    })
     this.state = {
       showAlert: true,
       onlineStatus:false,
-      id : "Ambilkar",
+      id : user.name,
       requested : false,
       riderId : null,
       rider : null,
-      seats : 5
+      seats : 5,
+      riderContact : '123456',
+      riderRating : 5,
+      contactNo : user.contactNo,
+      rating : user.rating
     };
 
     
@@ -29,7 +43,9 @@ export default class DriverDummy extends Component {  //rename ur calss same as 
 
     this.socket.on('request' , (msg)=>{
       console.log("geting requests");
-      this.setState( {rider : msg.id , riderId : msg.riderId , requested : true} )
+      this.setState( {rider : msg.id , 
+        riderId : msg.riderId, riderContact : msg.contactNo, 
+          riderRating : msg.rating , requested : true, seats : msg.noOfPass} )
     })
 
   }
@@ -68,7 +84,7 @@ export default class DriverDummy extends Component {  //rename ur calss same as 
 
     let state = this.state;
     let driverId = state.id, id = state.riderId;
-    this.socket.emit('sendAcception' , { driverId, id } )
+    this.socket.emit('sendAcception' , { driverId, id , contactNo : this.state.contactNo } )
 
     this.setState({
       showAlert: false

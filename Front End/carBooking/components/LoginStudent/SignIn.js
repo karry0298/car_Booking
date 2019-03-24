@@ -3,6 +3,8 @@ import {StyleSheet, ImageBackground, Image, View, Dimensions , Linking} from 're
 import {Container, Content, Button, Item, Label, Input, Form,Text, Icon} from "native-base";
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import logo from '../../assets/images/logo.png';
+import axios from 'axios';
+import IPADDR from '../../assets/constant/IP';
 
 const {width: WIDTH} = Dimensions.get('window');
 export default class SignIn extends Component {
@@ -11,7 +13,33 @@ export default class SignIn extends Component {
         this.state = {
             errorMessage: false
         }
-    } 
+    }
+    
+    verifyUser = () =>{
+
+        var url = `http://${IPADDR}:3000/user/verify`
+        var username = this.state.formUsername,
+            password = this.state.formPassword;
+
+        console.log(this.state , username, password)    
+        axios.post( url , {username,password} ).then( res =>{
+
+            var data = res.data;
+            console.log(data)
+            if ( data.status ){
+                if ( data.user.isStudent ){
+                    this.props.navigation.navigate('profile', { user : data.user } )
+                }else{
+                    this.props.navigation.navigate('driverdummy', { user : data.user })
+                }
+            }else{
+                this.setState( { errorMessage : true } )
+            }
+
+        })
+
+
+    }
 
     render() {
         return (
@@ -32,13 +60,13 @@ export default class SignIn extends Component {
                         <Form block style={styles.item}>
                             <Item block floatingLabel>
                                 <Label block style={{marginBottom: 20}}>
-                                    <Text>Email</Text>
+                                    <Text>Student Id</Text>
                                 </Label>
                                 <FontAwesome5 name={'user'} brand style={{paddingLeft:25 ,color:'#000000'}} />
 
                                 <Input block
-                                       onChangeText={(text) => this.setState({"formEmail":text})}
-                                       value={this.state["formEmail"]} />
+                                       onChangeText={(text) => this.setState({"formUsername":text})}
+                                       value={this.state["formUsername"]} />
                             </Item>
                             <Item floatingLabel>
                                 <Label>Password</Label>
@@ -53,7 +81,7 @@ export default class SignIn extends Component {
                     </View>
 
                         <Button rounded info style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}
-                                onPress={() => this.props.navigation.navigate('profile')}>
+                                onPress={ this.verifyUser }>
                             <Text >Student Login</Text>
                         </Button>
 

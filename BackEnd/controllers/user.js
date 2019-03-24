@@ -39,18 +39,30 @@ module.exports.verifyUser  = (req , res) =>{
     let username = b.username;
     let pswd = b.password;
 
+    console.log(username, pswd)
+
+    if ( username == null || pswd == null ){
+        res.send({status : false})
+        return;
+    }
+
     let md5 = crypto.createHash('md5');
     md5.update(pswd);
     var hash = md5.digest('hex');
 
     User.findOne({username}, (err , doc)=>{
 
-        console.log(doc.hash, " -=- ", hash)
-        if(err){
-            res.send({err})
-        }else if ( doc.hash == hash ){
-            res.send({status : true , user : doc})
-        }else{
+
+        try {
+            if(err || doc == null){
+                res.send({err,status : false})
+            }else if ( doc.hash == hash ){
+                res.send({status : true , user : doc})
+            }else{
+                res.send({status : false})
+            }
+        }
+        catch (e){
             res.send({status : false})
         }
 

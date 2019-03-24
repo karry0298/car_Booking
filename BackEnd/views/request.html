@@ -29,7 +29,7 @@
         $('form').submit(function(e){
           e.preventDefault(); // prevents page reloading
 
-          socket.emit('find', { id : $('#id').val() , riderId : socket.id });
+          socket.emit('find', { id : $('#id').val() , riderId : socket.id, contactNo : 9762622540, rating : 3 , noOfPass : 3 });
           return false;
         });
 
