@@ -21,6 +21,7 @@ import SideBar from './components/SideBar';
 import ListTimeTable from './components/ListTimeTable';
 import DriverDummy from './components/DriverDummy';   //rename ur calss and folder path
 import DriverDummyNew from './components/DriverDummyNew'; //rename ur calss and folder path
+import PastRides from './components/PastRides';
 
 
 //-----------------------Drawer navigation Bar ---------------------------------------
@@ -50,6 +51,7 @@ const AppNavigator = createStackNavigator({
   driverLogin:{screen:LoginDriver},
   driverdummy:{screen:DriverDummy},             //rename  screen to ur calssName and put dhang ka label instead of driverdummy
   driverdummynew:{screen:DriverDummyNew},       //rename  screen to ur calssName and put dhang ka label instead of driverdummynew
+  pastRides:{screen:PastRides},
    profile: Mdn,
   // navigateRoute:{screen:NavigateRouteInput},
   // navigateMaps:{screen:NavRouteMaps},

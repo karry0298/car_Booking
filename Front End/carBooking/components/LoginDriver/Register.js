@@ -11,7 +11,8 @@ export default class SignIn extends Component {
     constructor(props)  {
         super(props);
         this.state = {
-            errorMessage: false
+            errorMessage: false,
+            drivOpt:'1'
         }
     }
 
@@ -64,13 +65,13 @@ export default class SignIn extends Component {
                             <View style={{flexDirection:'row' , marginLeft:15, marginTop:25}}>
 
                             <View style={{flex:0.5}}>
-                              <Radio selected={false} />
+                              <Radio onPress={() => this.setState({ drivOpt: '1' })} selected={this.state.drivOpt == '1'} />
                               <Text>New Driver</Text> 
                             </View>
 
 
                             <View style={{flex:0.5}}>
-                              <Radio selected={true} />
+                              <Radio onPress={() => this.setState({ drivOpt: '2' })} selected={this.state.drivOpt == '2'} />
                               <Text>Exprienced Driver</Text>
                             </View>                        
 

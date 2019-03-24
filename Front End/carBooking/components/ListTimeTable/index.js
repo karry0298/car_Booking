@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text,StyleSheet,Linking } from 'react-native';
-import {Container, Content, Button, Item, Label, Input, Form,Icon, Header} from "native-base";
+import { View, Text,StyleSheet,Linking,TouchableOpacity,Picker } from 'react-native';
+import {Container, Content, Button, Item, Label, Input, Form,Icon, Header ,Radio } from "native-base";
 import ListItem from './Listitem.js';
 import Dialog, { DialogTitle,DialogContent,DialogFooter,DialogButton,SlideAnimation} from 'react-native-popup-dialog';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -18,7 +18,10 @@ export default class studentNavigation extends Component {
       findingTumTumMsg : "Finding TumTum...",
       findingRickshawMsg : "Finding Rickshaw...",
       accepted : false,
-      driverId : null
+      driverId : null,
+      tumtumNumber:'1',
+      rickshawNumber:'1',
+      destination:""
     };
     this.socket = SocketIOClient('http://192.168.1.108:3000');
   }
@@ -86,6 +89,8 @@ handleRickshawPress = () =>{
             </Button>
           </View>
 
+
+
           <View style={{flex:0.5}}>
             <Button info style={{textAlign:'center',justifyContent:'center', alignSelf: 'stretch', backgroundColor:"#0051a3"}}
                     onPress={ this.handleRickshawPress }>
@@ -95,38 +100,82 @@ handleRickshawPress = () =>{
 
         </View>
 
-{/* ---------------------------------------------------------------------------------------------------------------------------------------------------- */}
+{/* ------------------------------------------------Tum   Tum---------------------------------------------------------------------------------------------------- */}
 
-<Dialog
-            onDismiss={() => {this.setState({tumtum:false})}}
-            width={0.75}
-            visible={this.state.tumtum}
-            rounded
-            actionsBordered
-            onTouchOutside  ={()=>{this.setState({tumtum:false})}}>
-            <View style={{height:"58%",flexDirection:"column",justifyContent: "space-between",alignItems: "center", }} >
-                <View style ={styles.DialogBContainer}>
-                
-                    <View style={[styles.CircleShapeView]}>
-                    <FontAwesome5 name={"bell"} brand style={{paddingLeft:5 , fontSize: 80, color:'black'}} /> 
+        <Dialog
+          onDismiss={() => {this.setState({tumtum:false})}}
+          width={0.80}
+          height={0.65}
+          visible={this.state.tumtum}
+          rounded
+          actionsBordered
+          onTouchOutside  ={()=>{this.setState({tumtum:false})}}>
+          <View style={{height:"58%",flexDirection:"column",justifyContent: "space-between",alignItems: "center", }} >
+              <View style ={styles.DialogBContainer}>
+              
+                  <View style={[styles.CircleShapeView]}>
+                  <FontAwesome5 name={"bell"} brand style={{paddingLeft:5 , fontSize: 80, color:'black'}} /> 
 
-                    </View>
-                </View>
-                <View>
-                    <Text style={[styles.status]} > Status</Text>
-                </View>
-                
-                <View >
-                    <Text style={{fontSize:22,fontWeight:'bold',color:'#000',marginTop:4}} > { this.state.findingTumTumMsg } </Text>
-                </View>
+                  </View>
+              </View>
+              <View>
+                  <Text style={[styles.status]} > Status</Text>
+              </View>
+              
+              <View >
+                  <Text style={{fontSize:22,fontWeight:'bold',color:'#000',marginTop:2}} > { this.state.findingTumTumMsg } </Text>
+              </View>
 
-                <View style={{margin:10,marginTop:55}}>
-                    <Button style={{paddingRight:22,backgroundColor:"#f1813b"}} rounded onPress={() => this.handle()}>
+              <View style={{paddingTop:15}}></View>
+
+              
+              <Item floatingLabel style={{width:250}}>
+                <Label>Enter Destination</Label>
+                <Input  onChangeText={(text) => this.setState({"destination":text})}
+                        value={this.state["destination"]}/>
+              </Item>
+
+
+                <View style={{flexDirection:'row', marginTop:15}}>
+                  <View style={{flex:0.5 , alignItems:'center',paddingTop: 14,}}>
+                    <Text style={{fontSize:18,fontWeight:'bold',color:'#000'}}> No Of People: </Text>
+                  </View>
+
+                  <View style={{flex:0.5 }}>
+                    <Picker
+                      selectedValue={this.state.tumtumNumber}
+                      style={{height: 50, width: 130}}
+                      onValueChange={(itemValue, itemIndex) =>
+                        this.setState({tumtumNumber: itemValue})
+                      }>
+                      <Picker.Item label="One : 1" value="1" />
+                      <Picker.Item label="Two : 2" value="2" />
+                      <Picker.Item label="Three : 3" value="3" />
+                      <Picker.Item label="Four : 4" value="4" />
+                      <Picker.Item label="Five : 5" value="5" />
+                      <Picker.Item label="Six : 6" value="6" />
+                      <Picker.Item label="Seven : 7" value="7" />
+                      <Picker.Item label="Eight : 8" value="8" />
+                      <Picker.Item label="Nine : 9" value="9" />
+                      <Picker.Item label="Ten : 10" value="10" />
+                      <Picker.Item label="Eleven : 11" value="11" />
+                      <Picker.Item label="Twelve : 12" value="12" />
+
+                    </Picker>
+                  </View>
+
+                </View>
+              
+              {/* onPress={() => this.handle()} */}
+
+                <View style={{margin:10,marginTop:13}}>
+                    <Button style={{paddingRight:22,backgroundColor:"#f1813b"}} rounded >
                         <Text style={{paddingLeft:23,fontSize:20 , textAlign:'center'}} > Book And Pay </Text>
                     </Button>
                 </View>
 
-            </View>
+
+          </View>
         </Dialog>
 
 {/* ---------------------------------------------------------------------------------------------------------------------------------------------------- */}
@@ -134,6 +183,7 @@ handleRickshawPress = () =>{
         <Dialog
             onDismiss={() => {this.setState({rickshaw:false})}}
             width={0.75}
+            height={0.65}
             visible={this.state.rickshaw}
             rounded
             actionsBordered
@@ -152,6 +202,36 @@ handleRickshawPress = () =>{
                 
                 <View >
                     <Text style={{fontSize:22,fontWeight:'bold',color:'#000',marginTop:4}} > { this.state.findingRickshawMsg } </Text>
+                </View>
+
+                <Item floatingLabel style={{width:250}}>
+                <Label>Enter Destination</Label>
+                <Input  onChangeText={(text) => this.setState({"destination":text})}
+                        value={this.state["destination"]}/>
+              </Item>
+
+
+                <View style={{flexDirection:'row', marginTop:15}}>
+                  <View style={{flex:0.5 , alignItems:'center',paddingTop: 14,}}>
+                    <Text style={{fontSize:18,fontWeight:'bold',color:'#000'}}> No Of People: </Text>
+                  </View>
+
+                  <View style={{flex:0.5 }}>
+                    <Picker
+                      selectedValue={this.state.rickshawNumber}
+                      style={{height: 50, width: 130}}
+                      onValueChange={(itemValue, itemIndex) =>
+                        this.setState({rickshawNumber: itemValue})
+                      }>
+                      <Picker.Item label="One : 1" value="1" />
+                      <Picker.Item label="Two : 2" value="2" />
+                      <Picker.Item label="Three : 3" value="3" />
+                      <Picker.Item label="Four : 4" value="4" />
+                      <Picker.Item label="Five : 5" value="5" />
+        
+                    </Picker>
+                  </View>
+
                 </View>
 
                 <View style={{margin:10,marginTop:55}}>
