@@ -1,10 +1,12 @@
 import React, {Component} from "react";
-import {StyleSheet, ImageBackground, Image, View, Dimensions} from 'react-native';
+import {StyleSheet, ImageBackground, Image, View, Dimensions, PermissionsAndroid} from 'react-native';
 import {
     Container, Content, Button, Item, Label, Input, Form,Radio,Text, Icon
 } from "native-base";
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import logo from '../../assets/images/logo.png';
+import ImagePicker from 'react-native-image-picker';
+import axios from 'axios';
 
 const {width: WIDTH} = Dimensions.get('window');
 export default class SignIn extends Component {
@@ -12,8 +14,113 @@ export default class SignIn extends Component {
         super(props);
         this.state = {
             errorMessage: false,
-            drivOpt:'1'
+            drivOpt:'1',
+            fd : null,
+            licenceUrl : '',
+            imageUrl : ''
+            
         }
+    }
+
+    async componentDidMount(){
+
+        console.log("mounting")
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+          {
+            title: 'Cool Photo App Camera Permission',
+            message:
+              'Cool Photo App needs access to your camera ' +
+              'so you can take awesome pictures.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+    
+        console.log(granted)        
+
+    }
+
+
+    uploadDrivingLicence = async () =>{
+
+        var fd = new FormData();
+        ImagePicker.launchImageLibrary({}, (response) => {
+      
+      
+
+            fd.append('file', {
+              uri: response.uri,
+              type: response.type,
+              name: response.fileName
+            });
+      
+            this.setState({ fd })
+            // console.log(fd)
+
+            var ref = this;
+            var url = 'http://192.168.1.108:3000/upload';
+            axios({
+              method: 'post',
+              url: url,
+              data: fd,
+              config: { headers: {'Content-Type': 'multipart/form-data' }}
+              })
+              .then(function (response) {
+                  //handle success
+                  var data = response.data;
+                  ref.setState({ licenceUrl : data.url })
+                  console.log( ref.state.licenceUrl );
+              })
+              .catch(function (response) {
+                  //handle error
+                  console.log(response);
+            });
+      
+          });
+
+
+
+    }
+
+    uploadProfilePicture = () =>{
+
+        var fd = new FormData();
+        ImagePicker.launchImageLibrary({}, (response) => {
+      
+      
+
+            fd.append('file', {
+              uri: response.uri,
+              type: response.type,
+              name: response.fileName
+            });
+      
+            this.setState({ fd })
+            // console.log(fd)
+
+            var ref = this;
+            var url = 'http://192.168.1.108:3000/upload';
+            axios({
+              method: 'post',
+              url: url,
+              data: fd,
+              config: { headers: {'Content-Type': 'multipart/form-data' }}
+              })
+              .then(function (response) {
+                  //handle success
+                  var data = response.data;
+                  ref.setState({ imageUrl : data.url })
+                  console.log();
+              })
+              .catch(function (response) {
+                  //handle error
+                  console.log(response);
+            });
+      
+          });
+
     }
 
 
@@ -61,6 +168,14 @@ export default class SignIn extends Component {
                                        onChangeText={(text) => this.setState({"formPassword":text})}
                                        value={this.state["formPassword"]}/>
                             </Item>
+
+                            <Button rounded info onPress={ this.uploadProfilePicture } style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}>
+                                <Text>Select Profile Image</Text>
+                            </Button>
+                            <Button rounded info onPress={ this.uploadDrivingLicence } style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}>
+                                <Text>Select Driving Licence</Text>
+                            </Button>
+
                             
                             <View style={{flexDirection:'row' , marginLeft:15, marginTop:25}}>
 

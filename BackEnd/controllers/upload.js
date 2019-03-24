@@ -17,19 +17,22 @@ const upload = multer({storage});
 router.route('/' )
     .post(upload.single('file') , (req , res) =>{
         
-        console.log(req.file)
-        // res.send("done")
+        // console.log(req.file)
+        // res.send({ status : true, url : '' })
       
         // A single image
 
         imgur.uploadFile(req.file.path)
         .then(function (json) {
+
+            let url = json.data.link,
+                deleteId = json.data.deletehash
             console.log(json.data);
-            res.send(json)
+            res.send({url , deleteId , status : true})
         })
         .catch(function (err) {
             console.error(err.message);
-            res.send(err)
+            res.send({...err, status : false, url : ''})
         });        
 
     } )
