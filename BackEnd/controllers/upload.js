@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const imgur = require('imgur');
 const multer = require('multer');
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../uploads')
+    cb(null, './uploads')
   },
   filename: function (req, file, cb) {
     let filename = file.originalname.split('.');
@@ -20,6 +21,7 @@ router.route('/' )
         // res.send("done")
       
         // A single image
+
         imgur.uploadFile(req.file.path)
         .then(function (json) {
             console.log(json.data);

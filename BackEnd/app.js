@@ -76,9 +76,11 @@ require('./models/db')
 
 var rideRoutes = require('./routes/ride');
 var userRoutes = require('./routes/user');
+var uploadRoutes = require('./controllers/upload')
 
 app.use('/user', userRoutes)
 app.use('/ride', rideRoutes);
+app.use('/upload', uploadRoutes)
 
 app.get('/request', function(req, res){
   res.sendFile( __dirname + '/views/request.html' )
