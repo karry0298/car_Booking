@@ -5,7 +5,7 @@ var Schema = mongoose.Schema
 var studentSchema = new Schema({
     
     rollNo : Number,
-    imageUrl : String,
+    imageUrl : String
 
 });
 

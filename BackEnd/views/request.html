@@ -28,13 +28,15 @@
 
         $('form').submit(function(e){
           e.preventDefault(); // prevents page reloading
-          socket.emit('find', { id : $('#id').val() });
+
+          socket.emit('find', { id : $('#id').val() , riderId : socket.id });
           return false;
         });
 
-        // socket.on('request', function(msg){
-        //   $('#demand').append($('<li>').text(msg));
-        // });
+        socket.on('accept', function(msg){
+          var driverId = msg.driverId;
+          $('#demand').append($('<li>').text(driverId + " has accepted the ride"));
+        });
 
         
       });
