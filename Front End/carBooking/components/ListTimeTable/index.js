@@ -4,7 +4,7 @@ import {Container, Content, Button, Item, Label, Input, Form,Icon, Header} from 
 import ListItem from './Listitem.js';
 import Dialog, { DialogTitle,DialogContent,DialogFooter,DialogButton,SlideAnimation} from 'react-native-popup-dialog';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
+import SocketIOClient from 'socket.io-client';
 
 export default class studentNavigation extends Component {
 
@@ -13,8 +13,24 @@ export default class studentNavigation extends Component {
     super(props);
     this.state = {
       tumtum:false,
-      rickshaw:false
+      rickshaw:false,
+      myId : 7943,
+      findingTumTumMsg : "Finding TumTum...",
+      findingRickshawMsg : "Finding Rickshaw...",
+      accepted : false,
+      driverId : null
     };
+    this.socket = SocketIOClient('http://192.168.1.108:3000');
+  }
+
+
+  componentDidMount() {
+
+    this.socket.on('accept', (msg)=>{
+      var findingTumTumMsg = `Mr ${msg.driverId} has accepted your request`
+      this.setState({ accepted : true , driverId : msg.driverId, findingTumTumMsg })
+    })
+
   }
 
   handle(){
@@ -36,6 +52,20 @@ export default class studentNavigation extends Component {
     });
 }
 
+handleTumTumPress = () =>{
+
+  this.setState({tumtum:true})
+  this.socket.emit('find' , { id : this.state.myId , riderId : this.socket.id })
+
+}
+
+handleRickshawPress = () =>{
+
+  this.setState({rickshaw:true})
+  this.socket.emit('find' , { id : this.state.myId , riderId : this.socket.id })
+
+}
+
 
   render() {
     console.disableYellowBox = true;
@@ -51,14 +81,14 @@ export default class studentNavigation extends Component {
         
           <View style={{flex:0.5}}>
             <Button info style={{textAlign:'center',justifyContent:'center', alignSelf: 'stretch', backgroundColor:"#0051a3"}}
-                    onPress={() => this.setState({tumtum:true})}>
+                    onPress={ this.handleTumTumPress }>
                 <Text style={{color:'white'}} >Book TumTum</Text>
             </Button>
           </View>
 
           <View style={{flex:0.5}}>
             <Button info style={{textAlign:'center',justifyContent:'center', alignSelf: 'stretch', backgroundColor:"#0051a3"}}
-                    onPress={() => this.setState({rickshaw:true})}>
+                    onPress={ this.handleRickshawPress }>
                 <Text style={{color:'white'}}>Book Rickshaw</Text>
             </Button>
           </View>
@@ -87,7 +117,7 @@ export default class studentNavigation extends Component {
                 </View>
                 
                 <View >
-                    <Text style={{fontSize:22,fontWeight:'bold',color:'#000',marginTop:4}} >Finding Tum Tum..... </Text>
+                    <Text style={{fontSize:22,fontWeight:'bold',color:'#000',marginTop:4}} > { this.state.findingTumTumMsg } </Text>
                 </View>
 
                 <View style={{margin:10,marginTop:55}}>
@@ -121,7 +151,7 @@ export default class studentNavigation extends Component {
                 </View>
                 
                 <View >
-                    <Text style={{fontSize:22,fontWeight:'bold',color:'#000',marginTop:4}} >Finding Rickshaw..... </Text>
+                    <Text style={{fontSize:22,fontWeight:'bold',color:'#000',marginTop:4}} > { this.state.findingRickshawMsg } </Text>
                 </View>
 
                 <View style={{margin:10,marginTop:55}}>
