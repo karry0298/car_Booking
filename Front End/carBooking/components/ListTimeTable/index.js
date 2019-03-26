@@ -60,16 +60,12 @@ export default class studentNavigation extends Component {
   }
 
   handle = () =>{
-    let appName = 'whatsapp';
     let url = 'http://m.p-y.tm';
     Linking.openURL(url).catch(err => {
     if (err.code === 'EUNSPECIFIED') {
 
         if (Platform.OS === 'android') {
-
-            Linking.openURL(
-                url
-                );
+            Linking.openURL(url);
             }
     } 
     else {

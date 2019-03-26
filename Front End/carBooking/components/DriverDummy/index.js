@@ -67,7 +67,6 @@ export default class DriverDummy extends Component {  //rename ur calss same as 
 
   goOnline = () =>{
 
-    
     if ( this.state.onlineStatus ){
       this.socket.emit('goOffline');
     }else{
@@ -76,8 +75,6 @@ export default class DriverDummy extends Component {  //rename ur calss same as 
 
     this.setState({ onlineStatus: !this.state.onlineStatus })
     
-    
-
   }
 
   acceptRequest = () =>{

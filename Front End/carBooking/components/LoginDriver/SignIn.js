@@ -29,8 +29,10 @@ export default class SignIn extends Component {
             console.log(data)
             if ( data.status ){
                 if ( data.user.isStudent ){
-                    this.props.navigation.navigate('profile', { user : data.user } )
+                    //User is Student
+                    this.props.navigation.navigate('profile', { user : data.user } ) 
                 }else{
+                    //User is Driver
                     this.props.navigation.navigate('driverdummy', { user : data.user })
                 }
                 

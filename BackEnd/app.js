@@ -29,7 +29,7 @@ io.on('connection', function(socket){
 
       socket.on('find', function(msg){
         
-        console.log("Finding Nemo" , msg)
+        console.log("Finding Ride for" , msg)
         socket.to('driver').emit('request', { ...msg })
 
         });
