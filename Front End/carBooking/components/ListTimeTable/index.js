@@ -132,8 +132,8 @@ handleRickshawPress = () =>{
 
         <Dialog
           onDismiss={() => {this.setState({tumtum:false})}}
-          width={0.80}
-          height={0.65}
+          width={0.85}
+          height={0.75}
           visible={this.state.tumtum}
           rounded
           actionsBordered
@@ -149,21 +149,25 @@ handleRickshawPress = () =>{
               <View>
                   <Text style={[styles.status]} > Status</Text>
               </View>
-              
-              <View >
-                  <Text style={{fontSize:22,fontWeight:'bold',color:'#000',marginTop:2}} > { this.state.findingTumTumMsg } </Text>
+              {/* { this.state.findingTumTumMsg } */}
+              <View style={{alignItems:'center',marginBottom:15}} >
+                  <Text style={{fontSize:18,fontWeight:'bold',color:'#000',marginTop:2}} >Mr.Ambilkar has accepted your request </Text>
                   {
                     this.state.accepted &&
-                    <Button onPress={ this.handleCall }>
-                      <Text>Call the Driver</Text>
-                    </Button>
+                    <View style={{marginTop:10}} >
+                      <Button onPress={ this.handleCall }>
+                        <Text style={{color:'white'}}>  Call the Driver  </Text>
+                      </Button>
+                    </View>        
                   }
+
+
               </View>
 
               <View style={{paddingTop:15}}></View>
 
               
-              <Item floatingLabel style={{width:250}}>
+              <Item floatingLabel style={{ width:250}}>
                 <Label>Enter Destination</Label>
                 <Input  onChangeText={(text) => this.setState({"destination":text})}
                         value={this.state["destination"]}/>
@@ -225,8 +229,8 @@ handleRickshawPress = () =>{
 
         <Dialog
             onDismiss={() => {this.setState({rickshaw:false})}}
-            width={0.75}
-            height={0.65}
+            width={0.85}
+            height={0.75}
             visible={this.state.rickshaw}
             rounded
             actionsBordered
@@ -243,14 +247,18 @@ handleRickshawPress = () =>{
                     <Text style={[styles.status]} > Status</Text>
                 </View>
                 
-                <View >
-                    <Text style={{fontSize:22,fontWeight:'bold',color:'#000',marginTop:4}} > { this.state.findingRickshawMsg } </Text>
+                {/* { this.state.findingRickshawMsg } */}
+
+                <View style={{alignItems:'center',marginBottom:15}}>
+                    <Text style={{textAlign:"center" , fontSize:18,fontWeight:'bold',color:'#000',marginTop:4}} >Mr.Ambilkar has accepted your request</Text>
 
                     {
                     this.state.accepted &&
-                    <Button onPress={ this.handleCall }>
-                      <Text>Call the Driver</Text>
-                    </Button>
+                    <View style={{marginTop:10}} >
+                      <Button onPress={ this.handleCall }>
+                        <Text style={{color:'white'}}>  Call the Driver  </Text>
+                      </Button>
+                    </View> 
                     }
 
                 </View>
