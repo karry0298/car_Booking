@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "server side for booking app",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node test.js"
+  },
   "author": "Abby",
   "license": "MIT",
   "private": false,
