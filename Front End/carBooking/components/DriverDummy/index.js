@@ -15,7 +15,7 @@ export default class DriverDummy extends Component {  //rename ur calss same as 
 
   constructor(props) {
     super(props);
-    this.socket = SocketIOClient(`http://${IPADDR}:3000`);
+    this.socket = SocketIOClient(`${IPADDR}`);
     var navi = this.props.navigation;
     var user = navi.getParam('user', {
       name : 'Abby Patil',

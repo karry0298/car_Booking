@@ -1,3 +1,3 @@
-const IPADDR = '192.168.1.108';
+const IPADDR = 'https://abbybooks.herokuapp.com/';
 
 export default IPADDR;

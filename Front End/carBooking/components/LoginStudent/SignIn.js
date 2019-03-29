@@ -17,7 +17,7 @@ export default class SignIn extends Component {
     
     verifyUser = () =>{
 
-        var url = `http://${IPADDR}:3000/user/verify`
+        var url = `${IPADDR}user/verify`
         var username = this.state.formUsername,
             password = this.state.formPassword;
 
@@ -28,7 +28,7 @@ export default class SignIn extends Component {
             console.log(data)
             if ( data.status ){
                 if ( data.user.isStudent ){
-                    this.props.navigation.navigate('profile', { user : data.user } )
+                    this.props.navigation.navigate('listTimeTable', { user : data.user } )
                 }else{
                     this.props.navigation.navigate('driverdummy', { user : data.user })
                 }
@@ -81,7 +81,7 @@ export default class SignIn extends Component {
                     </View>
 
                         <Button rounded info style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}
-                                onPress={ () =>  this.props.navigation.navigate('listTimeTable') }>
+                                onPress={ this.verifyUser }>
                             <Text >Student Login</Text>
                         </Button>
 

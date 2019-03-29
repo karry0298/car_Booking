@@ -23,8 +23,8 @@ export default class studentNavigation extends Component {
       tumtum:false,
       rickshaw:false,
       myId : user.name,
-      findingTumTumMsg : "Finding TumTum...",
-      findingRickshawMsg : "Finding Rickshaw...",
+      findingTumTumMsg : "Finding your Ride...",
+      findingRickshawMsg : "Finding your Ride..",
       accepted : false,
       driverId : null,
       contactNo : user.contactNo,
@@ -34,7 +34,7 @@ export default class studentNavigation extends Component {
       destination:"College",
       driverContactNo : 9730304944
     };
-    this.socket = SocketIOClient(`http://${IPADDR}:3000`);
+    this.socket = SocketIOClient(`${IPADDR}`);
   }
 
 
@@ -147,7 +147,7 @@ handleRickshawPress = () =>{
               </View>
               {/* { this.state.findingTumTumMsg } */}
               <View style={{alignItems:'center',marginBottom:15}} >
-                  <Text style={{fontSize:18,fontWeight:'bold',color:'#000',marginTop:2}} >Mr.Ambilkar has accepted your request </Text>
+                  <Text style={{fontSize:18,fontWeight:'bold',color:'#000',marginTop:2}} > { this.state.findingTumTumMsg } </Text>
                   {
                     this.state.accepted &&
                     <View style={{marginTop:10}} >

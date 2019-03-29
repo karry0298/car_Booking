@@ -18,29 +18,28 @@ export default class SignIn extends Component {
 
     verifyUser = () =>{
 
-        var url = `http://${IPADDR}:3000/user/verify`
+        var url = `${IPADDR}user/verify`
         var username = this.state.formUsername,
             password = this.state.formPassword;
 
-        console.log(this.state , username, password)    
+        // console.log(this.state , username, password);
+        // this.props.navigation.navigate('driverdummy', { user : { id : "ne" , contactNo : 536 , riderId : 54 } })    
         axios.post( url , {username,password} ).then( res =>{
 
             var data = res.data;
-            console.log(data)
+            console.log(data, "======")
             if ( data.status ){
                 if ( data.user.isStudent ){
-                    //User is Student
-                    this.props.navigation.navigate('profile', { user : data.user } ) 
+                    this.props.navigation.navigate('profile', { user : data.user } )
                 }else{
-                    //User is Driver
                     this.props.navigation.navigate('driverdummy', { user : data.user })
                 }
-                
             }else{
                 this.setState( { errorMessage : true } )
             }
 
         })
+
 
     }
 
