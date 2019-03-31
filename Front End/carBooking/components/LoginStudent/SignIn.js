@@ -6,12 +6,14 @@ import logo from '../../assets/images/logo.png';
 import axios from 'axios';
 import IPADDR from '../../assets/constant/IP';
 
+
 const {width: WIDTH} = Dimensions.get('window');
 export default class SignIn extends Component {
     constructor(props)  {
         super(props);
         this.state = {
-            errorMessage: false
+            error: false,
+            errorMessage : "No Error"
         }
     }
     
@@ -21,6 +23,12 @@ export default class SignIn extends Component {
         var username = this.state.formUsername,
             password = this.state.formPassword;
 
+        if ( username.length != 7  || ! isNumber(username) || password == null ){
+            this.setState( { error : true , errorMessage : "Invalid Roll No. " } )
+            return ;
+        }
+
+            
         console.log(this.state , username, password)    
         axios.post( url , {username,password} ).then( res =>{
 
@@ -33,7 +41,7 @@ export default class SignIn extends Component {
                     this.props.navigation.navigate('driverdummy', { user : data.user })
                 }
             }else{
-                this.setState( { errorMessage : true } )
+                this.setState( { error : true , errorMessage : "Invalid Credentials " } )
             }
 
         })
@@ -51,7 +59,7 @@ export default class SignIn extends Component {
                     </View>
 
                     <View style={{paddingLeft: 20, paddingRight: 20}}>
-                        {this.state.errorMessage &&
+                        {this.state.error &&
                         <View style={{backgroundColor:"lightpink", padding:20,
                          borderRadius:10, borderWidth:2, borderColour:"red", textAlign:"center", marginTop:20}}>
                             <Text>{this.state.errorMessage}</Text>
@@ -64,7 +72,7 @@ export default class SignIn extends Component {
                                 </Label>
                                 <FontAwesome5 name={'user'} brand style={{paddingLeft:25 ,color:'#000000'}} />
 
-                                <Input block
+                                <Input block keyboardType='name-phone-pad'
                                        onChangeText={(text) => this.setState({"formUsername":text})}
                                        value={this.state["formUsername"]} />
                             </Item>

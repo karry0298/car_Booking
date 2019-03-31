@@ -14,12 +14,30 @@ export default class SignIn extends Component {
         super(props);
         this.state = {
             errorMessage: false,
-            drivOpt:'1',
+            drivOpt:false,
             fd : null,
-            licenceUrl : '',
-            imageUrl : ''
+            licenceUrl : 'https://www.informalnewz.com/wp-content/uploads/2018/04/index-5.jpeg',
+            imageUrl : 'https://i.pinimg.com/originals/1a/b7/93/1ab793756082c4a2a341817da054daf1.jpg'
             
         }
+    }
+
+    _register = () =>{
+
+        let ts = this.state;
+        let query = {
+            name : ts.formName,
+            age : ts.formAge,
+            password : ts.formPassword,
+            photoUrl : ts.imageUrl,
+            licenceUrl : ts.licenceUrl,
+            carModel : ts.formCarModel,
+            carNumber : ts.formCarNumber,
+            experienced : ts.drivOpt,
+            contactNo : ts.formMobile
+        }
+        console.log( query )
+
     }
 
     async componentDidMount(){
@@ -147,20 +165,20 @@ export default class SignIn extends Component {
                                     <Text>Name</Text>
                                 </Label>
                                 <Input block
-                                       onChangeText={(text) => this.setState({"formEmail":text})}
-                                       value={this.state["formEmail"]} />
+                                       onChangeText={(text) => this.setState({"formName":text})}
+                                       value={this.state["formName"]} />
                             </Item>
                             <Item floatingLabel>
-                                <Label>Email</Label>
-                                <Input secureTextEntry
-                                       onChangeText={(text) => this.setState({"formPassword":text})}
-                                       value={this.state["formPassword"]}/>
+                                <Label>Mobile</Label>
+                                <Input 
+                                       onChangeText={(text) => this.setState({"formMobile":text})}
+                                       value={this.state["formMobile"]}/>
                             </Item>
                             <Item floatingLabel>
                                 <Label>Age</Label>
-                                <Input secureTextEntry
-                                       onChangeText={(text) => this.setState({"formPassword":text})}
-                                       value={this.state["formPassword"]}/>
+                                <Input 
+                                       onChangeText={(text) => this.setState({"formAge":text})}
+                                       value={this.state["formAge"]}/>
                             </Item>
                             <Item floatingLabel>
                                 <Label>Password</Label>
@@ -168,6 +186,23 @@ export default class SignIn extends Component {
                                        onChangeText={(text) => this.setState({"formPassword":text})}
                                        value={this.state["formPassword"]}/>
                             </Item>
+
+                            <Item floatingLabel>
+                                <Label> Car Model </Label>
+                                <Input 
+                                       onChangeText={(text) => this.setState({"formCarModel":text})}
+                                       value={this.state["formCarModel"]}/>
+                            </Item>
+
+
+                            <Item floatingLabel>
+                                <Label> Car Number </Label>
+                                <Input
+                                       onChangeText={(text) => this.setState({"formCarNumber":text})}
+                                       value={this.state["formCarNumber"]}/>
+                            </Item>
+
+
 
                             <Button rounded info onPress={ this.uploadProfilePicture } style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}>
                                 <Text>Select Profile Image</Text>
@@ -180,13 +215,13 @@ export default class SignIn extends Component {
                             <View style={{flexDirection:'row' , marginLeft:15, marginTop:25}}>
 
                             <View style={{flex:0.5}}>
-                              <Radio onPress={() => this.setState({ drivOpt: '1' })} selected={this.state.drivOpt == '1'} />
+                              <Radio onPress={() => this.setState({ drivOpt: false })} selected={this.state.drivOpt != true} />
                               <Text>New Driver</Text> 
                             </View>
 
 
                             <View style={{flex:0.5}}>
-                              <Radio onPress={() => this.setState({ drivOpt: '2' })} selected={this.state.drivOpt == '2'} />
+                              <Radio onPress={() => this.setState({ drivOpt: true })} selected={this.state.drivOpt != false} />
                               <Text>Exprienced Driver</Text>
                             </View>                        
 
@@ -195,7 +230,8 @@ export default class SignIn extends Component {
 
                         </Form>
 
-                        <Button rounded info style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}>
+                        <Button rounded info onPress={ this._register }
+                        style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}>
                             <Text >Register</Text>
                         </Button>
 

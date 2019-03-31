@@ -12,6 +12,7 @@ export default class SignIn extends Component {
     constructor(props)  {
         super(props);
         this.state = {
+            error : false,
             errorMessage: false
         }
     } 
@@ -21,6 +22,11 @@ export default class SignIn extends Component {
         var url = `${IPADDR}user/verify`
         var username = this.state.formUsername,
             password = this.state.formPassword;
+
+            if ( username.length != 10 || ! isNumber(username) || password == null){
+                this.setState( { error : true , errorMessage : "Invalid Phone No. " } )
+                return ;
+            }
 
         // console.log(this.state , username, password);
         // this.props.navigation.navigate('driverdummy', { user : { id : "ne" , contactNo : 536 , riderId : 54 } })    
@@ -53,7 +59,7 @@ export default class SignIn extends Component {
                     </View>
 
                     <View style={{paddingLeft: 20, paddingRight: 20}}>
-                        {this.state.errorMessage &&
+                        {this.state.error &&
                         <View style={{backgroundColor:"lightpink", padding:20,
                          borderRadius:10, borderWidth:2, borderColour:"red", textAlign:"center", marginTop:20}}>
                             <Text>{this.state.errorMessage}</Text>
@@ -66,7 +72,7 @@ export default class SignIn extends Component {
                                 </Label>
                                 <FontAwesome5 name={'user'} brand style={{paddingLeft:25 ,color:'#000000'}} />
 
-                                <Input block
+                                <Input block keyboardType='name-phone-pad'
                                        onChangeText={(text) => this.setState({"formUsername":text})}
                                        value={this.state["formUsername"]} />
                             </Item>
