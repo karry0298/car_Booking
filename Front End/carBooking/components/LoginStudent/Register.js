@@ -5,6 +5,10 @@ import {
 } from "native-base";
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import logo from '../../assets/images/logo.png';
+import axios from 'axios';
+
+import IPADR from "../../assets/constant/IP";
+
 
 const {width: WIDTH} = Dimensions.get('window');
 export default class SignIn extends Component {
@@ -15,7 +19,29 @@ export default class SignIn extends Component {
         }
     }
 
+    _register = () =>{
 
+        let ts = this.state;
+        let query = {
+            name : ts.formName,
+            age : ts.formAge,
+            password : ts.formPassword,
+            contactNo : ts.formMobile,
+            rollNo : ts.formRollNo,
+            isStudent : true
+        }
+
+        var url = `${IPADR}user/registerStudent`
+        console.log("CALLING URL", url)
+        axios.post( url , query )
+            .then( res => {
+                console.log("[DATA: ]",res.data);
+                this.props.navigation.navigate('studentLogin')
+            } )
+            .catch( err => console.log(err) )
+        // console.log( query )
+
+    }
 
     render() {
         return (
@@ -39,28 +65,28 @@ export default class SignIn extends Component {
                                     <Text>Name</Text>
                                 </Label>
                                 <Input block
-                                       onChangeText={(text) => this.setState({"formEmail":text})}
-                                       value={this.state["formEmail"]} />
+                                       onChangeText={(text) => this.setState({"formName":text})}
+                                       value={this.state["formName"]} />
                             </Item>
                             <Item floatingLabel>
                                 <Label>Email</Label>
-                                <Input secureTextEntry
-                                       onChangeText={(text) => this.setState({"formPassword":text})}
-                                       value={this.state["formPassword"]}/>
+                                <Input 
+                                       onChangeText={(text) => this.setState({"formEmail":text})}
+                                       value={this.state["formEmail"]}/>
                             </Item>
                             
                             <Item floatingLabel>
                                 <Label>Roll Number</Label>
-                                <Input secureTextEntry
-                                       onChangeText={(text) => this.setState({"formPassword":text})}
-                                       value={this.state["formPassword"]}/>
+                                <Input 
+                                       onChangeText={(text) => this.setState({"formRollNo":text})}
+                                       value={this.state["formRollNo"]}/>
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Age</Label>
-                                <Input secureTextEntry
-                                       onChangeText={(text) => this.setState({"formPassword":text})}
-                                       value={this.state["formPassword"]}/>
+                                <Input 
+                                       onChangeText={(text) => this.setState({"formAge":text})}
+                                       value={this.state["formAge"]}/>
                             </Item>
                             <Item floatingLabel>
                                 <Label>Password</Label>
@@ -71,7 +97,8 @@ export default class SignIn extends Component {
                            
                         </Form>
 
-                        <Button rounded info style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}>
+                        <Button rounded info onPress={this._register}
+                        style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}>
                             <Text >Register</Text>
                         </Button>
 
