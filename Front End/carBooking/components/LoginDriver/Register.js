@@ -7,6 +7,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import logo from '../../assets/images/logo.png';
 import ImagePicker from 'react-native-image-picker';
 import axios from 'axios';
+import IPADR from "../../assets/constant/IP";
 
 const {width: WIDTH} = Dimensions.get('window');
 export default class SignIn extends Component {
@@ -34,9 +35,19 @@ export default class SignIn extends Component {
             carModel : ts.formCarModel,
             carNumber : ts.formCarNumber,
             experienced : ts.drivOpt,
-            contactNo : ts.formMobile
+            contactNo : ts.formMobile,
+            isStudent : false
         }
-        console.log( query )
+
+        var url = `${IPADR}user/registerDriver`
+        console.log("CALLING URL", url)
+        axios.post( url , query )
+            .then( res => {
+                console.log("[DATA: ]",res.data);
+                this.props.navigation.navigate('driverLogin')
+            } )
+            .catch( err => console.log(err) )
+        // console.log( query )
 
     }
 
@@ -170,13 +181,13 @@ export default class SignIn extends Component {
                             </Item>
                             <Item floatingLabel>
                                 <Label>Mobile</Label>
-                                <Input 
+                                <Input keyboardType='name-phone-pad' 
                                        onChangeText={(text) => this.setState({"formMobile":text})}
                                        value={this.state["formMobile"]}/>
                             </Item>
                             <Item floatingLabel>
                                 <Label>Age</Label>
-                                <Input 
+                                <Input keyboardType='name-phone-pad' 
                                        onChangeText={(text) => this.setState({"formAge":text})}
                                        value={this.state["formAge"]}/>
                             </Item>
