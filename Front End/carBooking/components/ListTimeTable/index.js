@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text,StyleSheet,Linking,TouchableOpacity,Picker } from 'react-native';
-import {Container, Content, Button, Item, Label, Input, Form,Icon, Header ,Radio } from "native-base";
+import {Container,List, Content, Button, Item, Label, Input, Form,Icon, Header ,Radio } from "native-base";
 import ListItem from './Listitem.js';
 import Dialog, { DialogTitle,DialogContent,DialogFooter,DialogButton,SlideAnimation} from 'react-native-popup-dialog';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -8,8 +8,20 @@ import SocketIOClient from 'socket.io-client';
 import IPADDR from '../../assets/constant/IP';
 import call from 'react-native-phone-call'
 
-export default class studentNavigation extends Component {
+const routes = [
+  {source:"Virar",desti:"Viva", time:"7:30 AM", travTime:"35 min"},
+  {source:"Virar" , desti:"Viva" , time:"7:45 AM", travTime:"25 min"},
+  {source:"Viva",desti:"Virar", time:"8:00 AM", travTime:"45 min"},
+  {source:"Viva",desti:"Virar", time:"8:15 AM", travTime:"5 min"},
+  {source:"Virar",desti:"Viva", time:"8:30 AM", travTime:"15 min"},
+  {source:"Virar",desti:"Viva", time:"8:45 AM", travTime:"32 min"},
+  {source:"Viva" , desti:"Virar" , time:"9:00 AM", travTime:"15 min"},
+  {source:"Viva",desti:"Virar", time:"9:15 AM", travTime:"15 min"},
+  {source:"Virar",desti:"Viva", time:"9:30 AM", travTime:"5 min"},
+  {source:"Viva",desti:"Virar", time:"9:45 AM", travTime:"25 min"}];
 
+
+export default class studentNavigation extends Component {
 
   constructor(props) {
     super(props);
@@ -100,9 +112,21 @@ handleRickshawPress = () =>{
       <View style={{flex:1 , backgroundColor:'#BA68C8'}}>
 
         <View style={{flex:1 , backgroundColor:'#BA68C8'}} >
-          <ListItem/>
+          <Container style={{backgroundColor:'#e8f5fc'}}>
+          <Content>  
+      
+          <List 
+              dataArray={routes}
+              renderRow={data => {
+                return (
+                  <ListItem source={data.source} desti={data.desti} time={data.time} travTime={data.travTime} />
+                  );
+                }}
+              />
+            </Content>
+          </Container>
+            
         </View> 
-
 
         <View style={{flexDirection:'row', justifyContent:'center'}}>
         

@@ -21,25 +21,25 @@ export default class ListItem extends Component {
     return (    
       
 
-    <Container style={{backgroundColor:'#e8f5fc'}}>
-        <Content>  
+    // <Container style={{backgroundColor:'#e8f5fc'}}>
+    //     <Content>  
     
-        <List 
-            dataArray={routes}
-            renderRow={data => {
-              return (
+    //     <List 
+    //         dataArray={routes}
+    //         renderRow={data => {
+    //           return (
 
                 <View style={{flex:1,}}>
                   
                   <View style={{flexDirection:'row' ,marginTop:7 , marginBottom: 7}}>
                     <View style={{flex:0.85}}>
-                      <Text blurRadius={1} style={{color:'black' , fontSize:23, paddingLeft:20 ,paddingRight:5}}>07:40 PM  COLLEGE</Text>
+                      <Text blurRadius={1} style={{color:'black' , fontSize:23, paddingLeft:20 ,paddingRight:5}}>{this.props.time} {this.props.source}</Text>
                       <Text blurRadius={1} style={{color:'grey' , fontSize:12, paddingLeft:20 ,paddingRight:5}}>Superfast Spl. Sunday General</Text>
-                      <Text blurRadius={1} style={{color:'grey' , fontSize:12, paddingLeft:20 ,paddingRight:5}}>STATION - COLLEGE</Text>
+                      <Text blurRadius={1} style={{color:'grey' , fontSize:12, paddingLeft:20 ,paddingRight:5}}>{this.props.source} - {this.props.desti}</Text>
                     </View>
                     
                     <View style={{flex:0.15 ,borderRightWidth:10 , borderRightColor: "red" , justifyContent:'center' , alignItems: 'center', }}>
-                      <Text blurRadius={1} style={{color:'black' , fontSize:12,paddingRight:5}}>35 min</Text>
+                      <Text blurRadius={1} style={{color:'black' , fontSize:12,paddingRight:5}}>{this.props.travTime}</Text>
                       <FontAwesome5 name={"star"} style={{fontSize:25}} />
                     </View>
                   </View>
@@ -55,11 +55,11 @@ export default class ListItem extends Component {
                   />
             
                 </View>  
-              );
-            }}
-          />
-        </Content>
-      </Container>
+      //         );
+      //       }}
+      //     />
+      //   </Content>
+      // </Container>
 
 
       

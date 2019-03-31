@@ -89,7 +89,7 @@ export default class SignIn extends Component {
                     </View>
 
                         <Button rounded info style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}
-                                onPress={ this.verifyUser }>
+                                onPress={ this.props.navigation.navigate('listTimeTable') }>
                             <Text >Student Login</Text>
                         </Button>
 

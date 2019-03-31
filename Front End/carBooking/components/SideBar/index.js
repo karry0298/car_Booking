@@ -24,8 +24,8 @@ export default class SideBar extends React.Component {
           <View style={styles.body}>
             <View style={styles.bodyContent}>
               <Text style={styles.name}>John Doe</Text>
-              <Text style={styles.info}>UX Designer </Text>
-              <Text style={styles.description}>Lorem ipsum dolor sit amet, isse consequuntur ius an,</Text>
+              <Text style={styles.info}>Third Year:Computer    Age : 20 </Text>
+              <Text style={styles.description}>Frequent Traveller</Text>
               
               <TouchableOpacity style={styles.buttonContainer}
                   onPress={() => this.props.navigation.navigate('pastRides')}>
