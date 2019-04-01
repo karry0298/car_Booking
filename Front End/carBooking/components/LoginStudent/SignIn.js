@@ -23,7 +23,7 @@ export default class SignIn extends Component {
         var username = this.state.formUsername,
             password = this.state.formPassword;
 
-        if ( username.length != 7  || ! isNumber(username) || password == null ){
+        if ( username.length != 8  || isNaN(username) || password == null ){
             this.setState( { error : true , errorMessage : "Invalid Roll No. " } )
             return ;
         }
@@ -89,7 +89,7 @@ export default class SignIn extends Component {
                     </View>
 
                         <Button rounded info style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}
-                                onPress={ this.props.navigation.navigate('listTimeTable') }>
+                                onPress={ this.verifyUser }>
                             <Text >Student Login</Text>
                         </Button>
 

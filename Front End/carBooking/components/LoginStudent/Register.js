@@ -23,6 +23,7 @@ export default class SignIn extends Component {
 
         let ts = this.state;
         let query = {
+            username : ts.formRollNo,
             name : ts.formName,
             age : ts.formAge,
             password : ts.formPassword,
@@ -36,7 +37,7 @@ export default class SignIn extends Component {
         axios.post( url , query )
             .then( res => {
                 console.log("[DATA: ]",res.data);
-                this.props.navigation.navigate('studentLogin')
+                this.props.navigation.navigate('login')
             } )
             .catch( err => console.log(err) )
         // console.log( query )
@@ -76,7 +77,7 @@ export default class SignIn extends Component {
                             </Item>
                             
                             <Item floatingLabel>
-                                <Label>Roll Number</Label>
+                                <Label>Student Id</Label>
                                 <Input 
                                        onChangeText={(text) => this.setState({"formRollNo":text})}
                                        value={this.state["formRollNo"]}/>

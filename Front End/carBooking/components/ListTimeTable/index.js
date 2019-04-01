@@ -54,9 +54,10 @@ export default class studentNavigation extends Component {
 
     this.socket.on('accept', (msg)=>{
       var findingTumTumMsg = `Mr ${msg.driverId} has accepted your request`
+      var findingRickshawMsg = findingTumTumMsg
       console.log(msg)
       this.setState({ accepted : true , 
-        driverId : msg.driverId, findingTumTumMsg , driverContactNo : msg.contactNo })
+        driverId : msg.driverId, findingTumTumMsg, findingRickshawMsg , driverContactNo : msg.contactNo })
     })
 
   }
@@ -270,7 +271,7 @@ handleRickshawPress = () =>{
                 {/* { this.state.findingRickshawMsg } */}
 
                 <View style={{alignItems:'center',marginBottom:15}}>
-                    <Text style={{textAlign:"center" , fontSize:18,fontWeight:'bold',color:'#000',marginTop:4}} >Mr.Ambilkar has accepted your request</Text>
+                    <Text style={{textAlign:"center" , fontSize:18,fontWeight:'bold',color:'#000',marginTop:4}} > { this.state.findingRickshawMsg } </Text>
 
                     {
                     this.state.accepted &&
@@ -315,7 +316,7 @@ handleRickshawPress = () =>{
 
                 <View style={{margin:10,marginTop:55}}>
                 {
-                      this.state.accepted ?
+                     ! this.state.accepted ?
                         <Button style={{paddingRight:22,backgroundColor:"#f1813b"}} rounded onPress={this.handleRickshawPress} >
                         <Text style={{paddingLeft:23,fontSize:20 , textAlign:'center'}} > Find </Text>
                         </Button> :

@@ -23,7 +23,7 @@ export default class SideBar extends React.Component {
           <Image style={styles.avatar} source={require('../../assets/images/avatar6.png')}/>
           <View style={styles.body}>
             <View style={styles.bodyContent}>
-              <Text style={styles.name}>John Doe</Text>
+              <Text style={styles.name}>Abhishek</Text>
               <Text style={styles.info}>Third Year:Computer    Age : 20 </Text>
               <Text style={styles.description}>Frequent Traveller</Text>
               

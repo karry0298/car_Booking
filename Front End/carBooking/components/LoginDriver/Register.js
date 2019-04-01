@@ -27,6 +27,7 @@ export default class SignIn extends Component {
 
         let ts = this.state;
         let query = {
+            username : ts.formMobile,
             name : ts.formName,
             age : ts.formAge,
             password : ts.formPassword,
@@ -44,7 +45,7 @@ export default class SignIn extends Component {
         axios.post( url , query )
             .then( res => {
                 console.log("[DATA: ]",res.data);
-                this.props.navigation.navigate('driverLogin')
+                this.props.navigation.navigate('login')
             } )
             .catch( err => console.log(err) )
         // console.log( query )
@@ -89,7 +90,7 @@ export default class SignIn extends Component {
             // console.log(fd)
 
             var ref = this;
-            var url = 'http://192.168.1.108:3000/upload';
+            var url = `${IPADR}upload`;
             axios({
               method: 'post',
               url: url,
@@ -130,7 +131,7 @@ export default class SignIn extends Component {
             // console.log(fd)
 
             var ref = this;
-            var url = 'http://192.168.1.108:3000/upload';
+            var url = `${IPADR}upload`;
             axios({
               method: 'post',
               url: url,

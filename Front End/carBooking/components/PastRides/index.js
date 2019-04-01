@@ -16,20 +16,20 @@ export default class PastRides extends Component {
           <Card style={{width:"93%" , alignSelf:'center'}}>
                         
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center"}}>
-                  <Text style={{marginLeft:10,fontSize:23}} >Date:12/12/1212</Text>
+                  <Text style={{marginLeft:10,fontSize:23}} >Date:18/7/2019</Text>
                   <Text style={{marginRight:10,fontSize:18}}>Mumbai</Text> 
               </View>
           
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
-                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Dr.Strange</Text>
-                  <Text style={{marginRight:10,fontSize:15}}>Price: 1,00,00,000</Text> 
+                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Sam</Text>
+                  <Text style={{marginRight:10,fontSize:15}}>Price: 250</Text> 
               </View>
 
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
                 <Rating
                     imageSize={30}
                     readonly
-                    startingValue={"4"}
+                    startingValue={"5"}
                     style={{marginLeft:10}}
                     />
               </View>
@@ -38,7 +38,7 @@ export default class PastRides extends Component {
 
               
             <CardItem footer bordered>
-                <Text>Source to Destination </Text>
+                <Text>Virar to Viva </Text>
             </CardItem>
 
           </Card>
@@ -46,20 +46,20 @@ export default class PastRides extends Component {
           <Card style={{width:"93%" , alignSelf:'center'}}>
                         
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center"}}>
-                  <Text style={{marginLeft:10,fontSize:23}} >Date:12/12/1212</Text>
+                  <Text style={{marginLeft:10,fontSize:23}} >Date:18/10/2019</Text>
                   <Text style={{marginRight:10,fontSize:18}}>Mumbai</Text> 
               </View>
           
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
-                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Dr.Strange</Text>
-                  <Text style={{marginRight:10,fontSize:15}}>Price: 1,00,00,000</Text> 
+                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Mr. Sharma</Text>
+                  <Text style={{marginRight:10,fontSize:15}}>Price: 100</Text> 
               </View>
 
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
                 <Rating
                     imageSize={30}
                     readonly
-                    startingValue={"4"}
+                    startingValue={"3"}
                     style={{marginLeft:10}}
                     />
               </View>
@@ -68,7 +68,7 @@ export default class PastRides extends Component {
 
               
             <CardItem footer bordered>
-                <Text>Source to Destination </Text>
+                <Text>Viva to Virar </Text>
             </CardItem>
 
           </Card>
@@ -76,20 +76,20 @@ export default class PastRides extends Component {
           <Card style={{width:"93%" , alignSelf:'center'}}>
                         
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center"}}>
-                  <Text style={{marginLeft:10,fontSize:23}} >Date:12/12/1212</Text>
+                  <Text style={{marginLeft:10,fontSize:23}} >Date:8/10/2019</Text>
                   <Text style={{marginRight:10,fontSize:18}}>Mumbai</Text> 
               </View>
           
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
-                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Dr.Strange</Text>
-                  <Text style={{marginRight:10,fontSize:15}}>Price: 1,00,00,000</Text> 
+                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Mr. Sharma</Text>
+                  <Text style={{marginRight:10,fontSize:15}}>Price: 50</Text> 
               </View>
 
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
                 <Rating
                     imageSize={30}
                     readonly
-                    startingValue={"4"}
+                    startingValue={"1"}
                     style={{marginLeft:10}}
                     />
               </View>
@@ -98,7 +98,7 @@ export default class PastRides extends Component {
 
               
             <CardItem footer bordered>
-                <Text>Source to Destination </Text>
+                <Text>Virar to Viva </Text>
             </CardItem>
 
           </Card>
@@ -106,13 +106,13 @@ export default class PastRides extends Component {
           <Card style={{width:"93%" , alignSelf:'center'}}>
                         
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center"}}>
-                  <Text style={{marginLeft:10,fontSize:23}} >Date:12/12/1212</Text>
+                  <Text style={{marginLeft:10,fontSize:23}} >Date:1/12/2010</Text>
                   <Text style={{marginRight:10,fontSize:18}}>Mumbai</Text> 
               </View>
           
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
-                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Dr.Strange</Text>
-                  <Text style={{marginRight:10,fontSize:15}}>Price: 1,00,00,000</Text> 
+                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Mr. Hari Om</Text>
+                  <Text style={{marginRight:10,fontSize:15}}>Price: 80</Text> 
               </View>
 
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
@@ -128,7 +128,7 @@ export default class PastRides extends Component {
 
               
             <CardItem footer bordered>
-                <Text>Source to Destination </Text>
+                <Text>Viva to Virar </Text>
             </CardItem>
 
           </Card>
@@ -136,13 +136,13 @@ export default class PastRides extends Component {
           <Card style={{width:"93%" , alignSelf:'center'}}>
                         
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center"}}>
-                  <Text style={{marginLeft:10,fontSize:23}} >Date:12/12/1212</Text>
+                  <Text style={{marginLeft:10,fontSize:23}} >Date:11/12/2018</Text>
                   <Text style={{marginRight:10,fontSize:18}}>Mumbai</Text> 
               </View>
           
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
-                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Dr.Strange</Text>
-                  <Text style={{marginRight:10,fontSize:15}}>Price: 1,00,00,000</Text> 
+                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Sabmit Singh</Text>
+                  <Text style={{marginRight:10,fontSize:15}}>Price: 25</Text> 
               </View>
 
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
@@ -158,7 +158,7 @@ export default class PastRides extends Component {
 
               
             <CardItem footer bordered>
-                <Text>Source to Destination </Text>
+                <Text>Virar to Viva </Text>
             </CardItem>
 
           </Card>
@@ -166,13 +166,13 @@ export default class PastRides extends Component {
           <Card style={{width:"93%" , alignSelf:'center'}}>
                         
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center"}}>
-                  <Text style={{marginLeft:10,fontSize:23}} >Date:12/12/1212</Text>
+                  <Text style={{marginLeft:10,fontSize:23}} >Date:11/12/2019</Text>
                   <Text style={{marginRight:10,fontSize:18}}>Mumbai</Text> 
               </View>
           
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
-                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Dr.Strange</Text>
-                  <Text style={{marginRight:10,fontSize:15}}>Price: 1,00,00,000</Text> 
+                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Manhor</Text>
+                  <Text style={{marginRight:10,fontSize:15}}>Price: 90</Text> 
               </View>
 
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
@@ -188,7 +188,7 @@ export default class PastRides extends Component {
 
               
             <CardItem footer bordered>
-                <Text>Source to Destination </Text>
+                <Text>Viva to RJ </Text>
             </CardItem>
 
           </Card>
@@ -196,20 +196,20 @@ export default class PastRides extends Component {
           <Card style={{width:"93%" , alignSelf:'center'}}>
                         
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center"}}>
-                  <Text style={{marginLeft:10,fontSize:23}} >Date:12/12/1212</Text>
+                  <Text style={{marginLeft:10,fontSize:23}} >Date:11/7/2019</Text>
                   <Text style={{marginRight:10,fontSize:18}}>Mumbai</Text> 
               </View>
           
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
-                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Dr.Strange</Text>
-                  <Text style={{marginRight:10,fontSize:15}}>Price: 1,00,00,000</Text> 
+                  <Text style={{marginLeft:10,fontSize:15}} >Driver : Manhor</Text>
+                  <Text style={{marginRight:10,fontSize:15}}>Price: 74</Text> 
               </View>
 
               <View style={{flexDirection:"row",justifyContent: "space-between",alignItems: "center",marginTop:10}}>
                 <Rating
                     imageSize={30}
                     readonly
-                    startingValue={"4"}
+                    startingValue={"2"}
                     style={{marginLeft:10}}
                     />
               </View>
@@ -218,7 +218,7 @@ export default class PastRides extends Component {
 
               
             <CardItem footer bordered>
-                <Text>Source to Destination </Text>
+                <Text>Viva to Virar </Text>
             </CardItem>
 
           </Card>          

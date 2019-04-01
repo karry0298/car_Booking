@@ -23,7 +23,7 @@ export default class SignIn extends Component {
         var username = this.state.formUsername,
             password = this.state.formPassword;
 
-            if ( username.length != 10 || ! isNumber(username) || password == null){
+            if ( username.length != 10 || isNaN(username) || password == null){
                 this.setState( { error : true , errorMessage : "Invalid Phone No. " } )
                 return ;
             }
@@ -41,7 +41,7 @@ export default class SignIn extends Component {
                     this.props.navigation.navigate('driverdummy', { user : data.user })
                 }
             }else{
-                this.setState( { errorMessage : true } )
+                this.setState( { error : true , errorMessage : "Invalid Credentials" } )
             }
 
         })
