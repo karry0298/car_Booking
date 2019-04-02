@@ -44,7 +44,8 @@ export default class studentNavigation extends Component {
       tumtumNumber:'1',
       rickshawNumber:'1',
       destination:"College",
-      driverContactNo : 9730304944
+      driverContactNo : 9730304944,
+      driverInfo : {}
     };
     this.socket = SocketIOClient(`${IPADDR}`);
   }
@@ -57,7 +58,8 @@ export default class studentNavigation extends Component {
       var findingRickshawMsg = findingTumTumMsg
       console.log(msg)
       this.setState({ accepted : true , 
-        driverId : msg.driverId, findingTumTumMsg, findingRickshawMsg , driverContactNo : msg.contactNo })
+        driverId : msg.driverId, findingTumTumMsg, 
+        findingRickshawMsg , driverContactNo : msg.contactNo, driverInfo : msg })
     })
 
   }
@@ -70,6 +72,13 @@ export default class studentNavigation extends Component {
       prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call 
     }
     call(contact).catch(console.error)
+  }
+
+  _handleMoreInfo = () =>{
+    this.setState({tumtum:false})
+    this.setState({rickshaw:false})
+    this.props.navigation.navigate('DriverProfile', { driver : this.state.driverInfo });
+
   }
 
   handle = () =>{
@@ -179,6 +188,9 @@ handleRickshawPress = () =>{
                       <Button onPress={ this.handleCall }>
                         <Text style={{color:'white'}}>  Call the Driver  </Text>
                       </Button>
+                      <Button rounded onPress={this._handleMoreInfo} >
+                        <Text style={{color:'white'}} > More Info </Text>
+                        </Button> 
                     </View>        
                   }
 
@@ -238,6 +250,7 @@ handleRickshawPress = () =>{
                         <Text style={{paddingLeft:23,fontSize:20 , textAlign:'center'}} > Pay </Text>
                         </Button> 
                     }
+                    
                         
                     
                 </View>

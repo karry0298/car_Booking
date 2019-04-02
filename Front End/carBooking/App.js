@@ -22,12 +22,14 @@ import ListTimeTable from './components/ListTimeTable';
 import DriverDummy from './components/DriverDummy';   //rename ur calss and folder path
 import DriverDummyNew from './components/DriverDummyNew'; //rename ur calss and folder path
 import PastRides from './components/PastRides';
-
+import DriverProfile from './components/DriverProfile';
 
 //-----------------------Drawer navigation Bar ---------------------------------------
 
 const Mdn = createDrawerNavigator({
   listTimeTable:{screen:ListTimeTable},
+  driverdummy:{screen:DriverDummy}, 
+  pastRides:{screen:PastRides}
 },
 {
   contentComponent: SideBar,
@@ -52,10 +54,8 @@ const AppNavigator = createStackNavigator({
   driverdummy:{screen:DriverDummy},             //rename  screen to ur calssName and put dhang ka label instead of driverdummy
   driverdummynew:{screen:DriverDummyNew},       //rename  screen to ur calssName and put dhang ka label instead of driverdummynew
   pastRides:{screen:PastRides},
-   profile: Mdn,
-  // navigateRoute:{screen:NavigateRouteInput},
-  // navigateMaps:{screen:NavRouteMaps},
-  // filter : { screen : filterScreen },
+  DriverProfile : { screen : DriverProfile } ,
+   profile: Mdn
   },
   {
   defaultNavigationOptions: ({navigation}) => {

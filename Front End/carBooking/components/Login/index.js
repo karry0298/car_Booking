@@ -41,7 +41,7 @@ export default class Login extends Component {
 
             <View style={styles.container}>
                 <View style={styles.header}></View>
-                <Image style={styles.avatar} source={require('../../assets/images/tumtum.jpg')}/>
+                <Image style={styles.avatar} source={require('../../assets/images/tata.jpeg')}/>
                 <View style={styles.body}>
                     <View>
                         <Button rounded info style={{textAlign:'center',justifyContent:'center',width:260 ,marginTop: 30, alignSelf: 'center', backgroundColor:"#0083d9"}}

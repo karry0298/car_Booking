@@ -33,7 +33,9 @@ export default class DriverDummy extends Component {  //rename ur calss same as 
       riderContact : '123456',
       riderRating : 5,
       contactNo : user.contactNo,
-      rating : user.rating
+      rating : user.rating,
+      photoUrl : user.photoUrl,
+      carNumber : user.carNumber
     };
 
     
@@ -81,7 +83,8 @@ export default class DriverDummy extends Component {  //rename ur calss same as 
 
     let state = this.state;
     let driverId = state.id, id = state.riderId;
-    this.socket.emit('sendAcception' , { driverId, id , contactNo : this.state.contactNo } )
+    this.socket.emit('sendAcception' , { driverId, id , contactNo : this.state.contactNo,
+    photoUrl : this.state.photoUrl , carNumber : this.state.carNumber } )
 
     this.setState({
       showAlert: false
