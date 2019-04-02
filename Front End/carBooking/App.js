@@ -56,29 +56,6 @@ const AppNavigator = createStackNavigator({
   pastRides:{screen:PastRides},
   DriverProfile : { screen : DriverProfile } ,
    profile: Mdn
-  },
-  {
-  defaultNavigationOptions: ({navigation}) => {
-    return {
-      headerLeft:(
-        <FontAwesome5 name={"bars"} brand style={{paddingLeft:15 , fontSize: 30, color:'white'}} onPress={() => navigation.toggleDrawer()}/>
-      ),
-      title:("Student Page"),
-      headerTitleStyle: {
-        fontWeight: "bold",
-        fontSize:30,
-        paddingLeft:60,
-        color: "white",
-        
-        alignSelf: 'center',
-      },
-      headerStyle: {
-        borderBottomColor:"white",
-        borderBottomWidth:1,
-        backgroundColor: "#0051a3"
-      }
-    };
-  }
-});
+  });
 
 export default createAppContainer(AppNavigator);

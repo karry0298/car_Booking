@@ -23,6 +23,10 @@ const routes = [
 
 export default class studentNavigation extends Component {
 
+  static navigationOptions = {
+    title: 'Student Page',
+  };
+
   constructor(props) {
     super(props);
     var navi = this.props.navigation;
@@ -185,9 +189,6 @@ handleRickshawPress = () =>{
                   {
                     this.state.accepted &&
                     <View style={{marginTop:10}} >
-                      <Button onPress={ this.handleCall }>
-                        <Text style={{color:'white'}}>  Call the Driver  </Text>
-                      </Button>
                       <Button rounded onPress={this._handleMoreInfo} >
                         <Text style={{color:'white'}} > More Info </Text>
                         </Button> 
